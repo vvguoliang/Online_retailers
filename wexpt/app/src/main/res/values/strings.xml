@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">wexpt</string>
-    <string name="title_home">Home</string>
-    <string name="title_classification">分类</string>
+    <string name="title_home">分类</string>
+    <string name="title_classification">客服</string>
     <string name="title_shopping_cart">购物车</string>
     <string name="title_my">我的</string>
 </resources>

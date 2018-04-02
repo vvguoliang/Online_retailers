@@ -16,6 +16,7 @@ import android.net.Uri
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Settings
+import android.support.annotation.RequiresApi
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.util.Log
@@ -345,6 +346,7 @@ public class DeviceInfo {
 
          * @return the string supported 32 bit abis
          */
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         @JvmStatic
         fun getStringSupported32bitABIS(): String {
             var result: String? = null
@@ -403,9 +405,7 @@ public class DeviceInfo {
                 e.printStackTrace()
             }
 
-            if (result == null || result.isEmpty()) {
-                result = null
-            }
+            if (result == null || result.isEmpty()) result = null
             return handleIllegalCharacterInResult("")
         }
 
