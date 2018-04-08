@@ -1,18 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidMissingOnClickHandler -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <net.wexpt.com.wexpt.ui.viwepage.MZBannerView
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        android:layout_marginTop="10dp"
-        app:open_mz_mode="false"
-        app:canLoop="true"
-        app:indicatorAlign="center"
-        />
+    android:id="@+id/banner"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_marginTop="10dp"
+    app:open_mz_mode="false"
+    app:canLoop="true"
+    app:indicatorAlign="center"
+    />
     <!--app:canLoop="true"-->
     <!--app:indicatorAlign="center"-->
     <!--app:indicatorPaddingBottom="50dp"-->

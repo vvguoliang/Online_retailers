@@ -39,10 +39,10 @@ import java.util.List;
  * ******┗┻┛  ┗┻┛
  */
 
-public class MainTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener,ViewPager.OnPageChangeListener{
+public class MainTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener, ViewPager.OnPageChangeListener {
 
     private MZBannerView banner;
-    public static final int []BANNER = new int[]{R.mipmap.banner1,R.mipmap.banner2,R.mipmap.banner3,R.mipmap.banner4,R.mipmap.banner5};
+    public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
 
     @Nullable
     @Override
@@ -59,7 +59,7 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         banner.setBannerPageClickListener(this);
 
         List<Integer> bannerList = new ArrayList<>();
-        for(int i=0;i<BANNER.length;i++){
+        for (int i = 0; i < BANNER.length; i++) {
             bannerList.add(BANNER[i]);
         }
         banner.setIndicatorVisible(true);
@@ -76,7 +76,7 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
 
     @Override
     public void onPageClick(View view, int position) {
-        Toast.makeText(getContext(),"click page:"+position,Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "click page:" + position, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -105,4 +105,5 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         super.onPause();
         banner.pause();
     }
+
 }
