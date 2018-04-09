@@ -5,13 +5,18 @@
     android:background="@android:color/black"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/message"
+    <net.wexpt.com.wexpt.ui.viwepage.MZBannerView
+        android:id="@+id/banner"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_margin="20dp"
-        android:gravity="center" />
+        android:layout_height="160dp"
+        app:canLoop="true"
+        app:indicatorAlign="center"
+        app:open_mz_mode="false" />
+    <!--app:canLoop="true"-->
+    <!--app:indicatorAlign="center"-->
+    <!--app:indicatorPaddingBottom="50dp"-->
+    <!--app:indicatorPaddingLeft="10dp"-->
+    <!--app:middle_page_cover="true"-->
+    <!--app:open_mz_mode="true" -->
 
 </RelativeLayout>
