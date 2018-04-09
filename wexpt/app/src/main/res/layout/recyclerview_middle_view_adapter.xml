@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/commont_dp10">
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="@dimen/commont_dp10"
+        android:src="@mipmap/ic_bag_image" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxEms="13"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="adladlkadladladladadad"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/commont_dp18" />
+
+        <net.wexpt.com.wexpt.ui.view.SnappingStepper.SnappingStepper
+            android:id="@+id/stepper"
+            android:layout_width="120dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ellipsize="end"
+            android:maxEms="11"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:text="adladlkadladladladadad"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/commont_dp16" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.wexpt.com.wexpt.R;
@@ -48,6 +49,8 @@ import java.util.Random;
  * ****┗┓┓┏━┳┓┏┛┏┛
  * ******┃┫┫  ┃┫┫
  * ******┗┻┛  ┗┻┛
+ * <p>
+ * 首页
  */
 
 public class MainTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener {
@@ -90,6 +93,8 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         recycler_view_test_rv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
         View headerView = adapter.setHeaderView(R.layout.home_banner_content, recycler_view_test_rv);
+        TextView text_title = headerView.findViewById(R.id.text_title);
+        text_title.setText(R.string.title_home_text);
         banner = headerView.findViewById(R.id.banner);
         recycler_view_image = headerView.findViewById(R.id.recycler_view_image);
         recycler_view_test_rv_image = headerView.findViewById(R.id.recycler_view_test_rv_image);
@@ -116,29 +121,29 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
 
     private List<Map<String, Object>> getlist() {
         List<Map<String, Object>> list = new ArrayList<>();
-        Map<String , Object> map = new HashMap<>();
-        map.put("name","包包");
-        map.put("image",R.mipmap.ic_bag_image);
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "包包");
+        map.put("image", R.mipmap.ic_bag_image);
         list.add(map);
         map = new HashMap<>();
-        map.put("name","美妆");
-        map.put("image",R.mipmap.ic_beauty_image);
+        map.put("name", "美妆");
+        map.put("image", R.mipmap.ic_beauty_image);
         list.add(map);
         map = new HashMap<>();
-        map.put("name","服装");
-        map.put("image",R.mipmap.ic_clothing_image);
+        map.put("name", "服装");
+        map.put("image", R.mipmap.ic_clothing_image);
         list.add(map);
         map = new HashMap<>();
-        map.put("name","配饰");
-        map.put("image",R.mipmap.ic_accessories_image);
+        map.put("name", "配饰");
+        map.put("image", R.mipmap.ic_accessories_image);
         list.add(map);
         map = new HashMap<>();
-        map.put("name","其他");
-        map.put("image",R.mipmap.ic_other_image);
+        map.put("name", "其他");
+        map.put("image", R.mipmap.ic_other_image);
         list.add(map);
         map = new HashMap<>();
-        map.put("name","自定义");
-        map.put("image",R.mipmap.ic_custom_image);
+        map.put("name", "自定义");
+        map.put("image", R.mipmap.ic_custom_image);
         list.add(map);
 
         return list;

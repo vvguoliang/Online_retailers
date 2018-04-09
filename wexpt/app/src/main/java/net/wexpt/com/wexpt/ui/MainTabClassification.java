@@ -36,7 +36,7 @@ public class MainTabClassification extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fra_maintab, container, false);
+        View view = inflater.inflate(R.layout.fra_maintabclass, container, false);
         return view;
     }
 

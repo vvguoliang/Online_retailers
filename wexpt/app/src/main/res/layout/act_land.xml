@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/pic_hd"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/commont_dp20"
+                android:src="@mipmap/ic_bag_image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commont_dp20"
+                android:layout_marginRight="@dimen/commont_dp20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/commont_dp20" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/commont_dp1"
+                    android:layout_marginTop="@dimen/commont_dp5"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/commont_dp10"
+                    android:text="@string/phone_hint"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/commont_dp16" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/commont_dp30"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="@dimen/commont_dp20"
+                android:src="@mipmap/ic_bag_image" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/commont_dp20"
+                android:layout_marginRight="@dimen/commont_dp20"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/commont_dp20" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/commont_dp1"
+                    android:layout_marginTop="@dimen/commont_dp5"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/commont_dp10"
+                    android:text="@string/phone_hint"
+                    android:textColor="@android:color/darker_gray"
+                    android:textSize="@dimen/commont_dp16" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

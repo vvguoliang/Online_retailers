@@ -38,6 +38,7 @@ class MainActivity : BaseBackExitActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         disableShiftMode(navigation);
         viewpager.adapter = viewPagerAdapter(supportFragmentManager, bluesFragments)
+        viewpager.setScroll(false)
         viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

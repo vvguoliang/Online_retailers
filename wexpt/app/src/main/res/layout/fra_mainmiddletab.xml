@@ -3,4 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <net.wexpt.com.wexpt.ui.recyclerview.XRefreshView
+        android:id="@+id/custom_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_test_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@color/white"
+            android:scrollbars="none" />
+    </net.wexpt.com.wexpt.ui.recyclerview.XRefreshView>
+
 </RelativeLayout>
