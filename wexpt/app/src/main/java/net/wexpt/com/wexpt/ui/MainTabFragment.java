@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,13 +16,17 @@ import net.wexpt.com.wexpt.R;
 import net.wexpt.com.wexpt.base.BaseFragment;
 import net.wexpt.com.wexpt.ui.Data.Person;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter;
+import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter1;
+import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter2;
 import net.wexpt.com.wexpt.ui.recyclerview.XRefreshView;
 import net.wexpt.com.wexpt.ui.recyclerview.XRefreshViewFooter;
 import net.wexpt.com.wexpt.ui.viwepage.BannerViewHolder;
 import net.wexpt.com.wexpt.ui.viwepage.MZBannerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -51,6 +56,8 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
     private RecyclerView recycler_view_test_rv;
 
     private SimpleAdapter adapter;
+    private SimpleAdapter1 adapter1;
+    private SimpleAdapter2 adapter2;
 
     private List<Person> personList = new ArrayList<>();
 
@@ -58,6 +65,9 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
 
     private MZBannerView banner;
     public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
+
+    private RecyclerView recycler_view_test_rv_image;
+    private RecyclerView recycler_view_image;
 
     @Nullable
     @Override
@@ -77,10 +87,88 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         initData();
 
         adapter = new SimpleAdapter(personList, getActivity());
+        recycler_view_test_rv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
 
-        recycler_view_test_rv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        View headerView = adapter.setHeaderView(R.layout.viewpager_banner_view, recycler_view_test_rv);
+        View headerView = adapter.setHeaderView(R.layout.home_banner_content, recycler_view_test_rv);
         banner = headerView.findViewById(R.id.banner);
+        recycler_view_image = headerView.findViewById(R.id.recycler_view_image);
+        recycler_view_test_rv_image = headerView.findViewById(R.id.recycler_view_test_rv_image);
+
+        getBranner();
+
+        recycler_view_test_rv.setAdapter(adapter);
+
+        getRecycler_view_test_rv();
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recycler_view_image.setLayoutManager(linearLayoutManager);
+        adapter1 = new SimpleAdapter1(getlist(), getActivity());
+
+        recycler_view_image.setAdapter(adapter1);
+
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
+        linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        recycler_view_test_rv_image.setLayoutManager(linearLayoutManager1);
+
+    }
+
+    private List<Map<String, Object>> getlist() {
+        List<Map<String, Object>> list = new ArrayList<>();
+        Map<String , Object> map = new HashMap<>();
+        map.put("name","包包");
+        map.put("image",R.mipmap.ic_bag_image);
+        list.add(map);
+        map = new HashMap<>();
+        map.put("name","美妆");
+        map.put("image",R.mipmap.ic_beauty_image);
+        list.add(map);
+        map = new HashMap<>();
+        map.put("name","服装");
+        map.put("image",R.mipmap.ic_clothing_image);
+        list.add(map);
+        map = new HashMap<>();
+        map.put("name","配饰");
+        map.put("image",R.mipmap.ic_accessories_image);
+        list.add(map);
+        map = new HashMap<>();
+        map.put("name","其他");
+        map.put("image",R.mipmap.ic_other_image);
+        list.add(map);
+        map = new HashMap<>();
+        map.put("name","自定义");
+        map.put("image",R.mipmap.ic_custom_image);
+        list.add(map);
+
+        return list;
+    }
+
+    private void initData() {
+        for (int i = 0; i < 10; i++) {
+            Person person = new Person("name" + i, "" + i);
+            personList.add(person);
+        }
+    }
+
+    @Override
+    public void onPageClick(View view, int position) {
+        Toast.makeText(getContext(), "click page:" + position, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        banner.start();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        banner.pause();
+    }
+
+    private void getBranner() {
         List<Integer> bannerList = new ArrayList<>();
         for (int i = 0; i < BANNER.length; i++) {
             bannerList.add(BANNER[i]);
@@ -91,9 +179,9 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         //mMZBanner.setIndicatorAlign(MZBannerView.IndicatorAlign.LEFT);
         //mMZBanner.setIndicatorPadding(10,0,0,150);
         banner.setPages(bannerList, () -> new BannerViewHolder());
+    }
 
-        recycler_view_test_rv.setAdapter(adapter);
-
+    private void getRecycler_view_test_rv() {
         custom_view.setPinnedTime(1000);
         custom_view.setPullLoadEnable(true);
         custom_view.setMoveForHorizontal(true);
@@ -145,27 +233,4 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         });
     }
 
-    private void initData() {
-        for (int i = 0; i < 10; i++) {
-            Person person = new Person("name" + i, "" + i);
-            personList.add(person);
-        }
-    }
-
-    @Override
-    public void onPageClick(View view, int position) {
-        Toast.makeText(getContext(), "click page:" + position, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        banner.start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        banner.pause();
-    }
 }
