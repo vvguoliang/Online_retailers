@@ -18,6 +18,7 @@ import java.util.List;
 public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapterViewHolder> {
     private List<Person> list;
     private int largeCardHeight, smallCardHeight;
+    private OnRecyclerViewItemClickListener mOnItemClickListener = null;
 
     public SimpleAdapter(List<Person> list, Context context) {
         this.list = list;
@@ -60,8 +61,7 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
     public SimpleAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType, boolean isItem) {
         View v = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.xrefreshview_item_recylerview, parent, false);
-        SimpleAdapterViewHolder vh = new SimpleAdapterViewHolder(v, true);
-        return vh;
+        return new SimpleAdapterViewHolder(v, true);
     }
 
     public void insert(Person person, int position) {
@@ -76,24 +76,30 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
         clear(list);
     }
 
-    public class SimpleAdapterViewHolder extends RecyclerView.ViewHolder {
+    public class SimpleAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public View rootView;
-        public TextView nameTv;
-        public TextView ageTv;
+        View rootView;
+        TextView nameTv;
+        TextView ageTv;
         public int position;
 
-        public SimpleAdapterViewHolder(View itemView, boolean isItem) {
+        SimpleAdapterViewHolder(View itemView, boolean isItem) {
             super(itemView);
             if (isItem) {
-                nameTv = (TextView) itemView
-                        .findViewById(R.id.recycler_view_test_item_person_name_tv);
-                ageTv = (TextView) itemView
-                        .findViewById(R.id.recycler_view_test_item_person_age_tv);
-                rootView = itemView
-                        .findViewById(R.id.card_view);
+                nameTv = itemView.findViewById(R.id.recycler_view_test_item_person_name_tv);
+                ageTv = itemView.findViewById(R.id.recycler_view_test_item_person_age_tv);
+                rootView = itemView.findViewById(R.id.card_view);
+                rootView.setOnClickListener(this);
             }
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mOnItemClickListener != null) {
+                //注意这里使用getTag方法获取数据
+                mOnItemClickListener.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 
@@ -102,6 +108,16 @@ public class SimpleAdapter extends BaseRecyclerAdapter<SimpleAdapter.SimpleAdapt
             return list.get(position);
         else
             return null;
+    }
+
+    //define interface
+    public interface OnRecyclerViewItemClickListener {
+        void onItemClick(View view, int data);
+
+    }
+
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.mOnItemClickListener = listener;
     }
 
 }

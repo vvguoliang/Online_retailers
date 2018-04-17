@@ -1,7 +1,10 @@
 package net.wexpt.com.wexpt.ui;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -19,11 +22,15 @@ import net.wexpt.com.wexpt.ui.Data.Person;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter1;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter2;
+import net.wexpt.com.wexpt.ui.http.AfferentDataHttpMap;
+import net.wexpt.com.wexpt.ui.http.HttpImplements;
+import net.wexpt.com.wexpt.ui.http.HttpRequest;
 import net.wexpt.com.wexpt.ui.recyclerview.XRefreshView;
 import net.wexpt.com.wexpt.ui.recyclerview.XRefreshViewFooter;
 import net.wexpt.com.wexpt.ui.viwepage.BannerViewHolder;
 import net.wexpt.com.wexpt.ui.viwepage.MZBannerView;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,7 +59,8 @@ import java.util.Random;
  * <p>
  * 首页
  */
-
+@SuppressWarnings("ALL")
+@SuppressLint("HandlerLeak")
 public class MainTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener {
 
     private XRefreshView custom_view;
@@ -117,6 +125,17 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycler_view_test_rv_image.setLayoutManager(linearLayoutManager1);
 
+        adapter.setOnItemClickListener((view12, data) -> Toast.makeText(getActivity(), "===1===" + data, Toast.LENGTH_LONG).show());
+        adapter1.setOnItemClickListener((view1, data) -> {
+            switch (data) {
+                case 0:
+                    getActivity().startActivity(new Intent(getActivity(), LandActivity.class));
+                    break;
+                case 1:
+                    break;
+            }
+        });
+
     }
 
     private List<Map<String, Object>> getlist() {
@@ -164,6 +183,8 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
     @Override
     public void onResume() {
         super.onResume();
+        HttpRequest.Companion.get().setPublic(getActivity(), AfferentDataHttpMap.Companion.get().setUSER_NUll(""),
+                mHandler, HttpImplements.Companion.get().getHttp(getActivity(), "HOME"), "HOME");
         banner.start();
     }
 
@@ -191,7 +212,6 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         custom_view.setPullLoadEnable(true);
         custom_view.setMoveForHorizontal(true);
         custom_view.setAutoLoadMore(true);
-//        recyclerviewAdapter.setHeaderView(headerView, recyclerView);
         adapter.setCustomLoadMoreView(new XRefreshViewFooter(getActivity()));
 
         custom_view.setXRefreshViewListener(new XRefreshView.SimpleXRefreshListener() {
@@ -237,5 +257,13 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
             }
         });
     }
+
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+        }
+    };
 
 }

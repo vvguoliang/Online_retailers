@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/pic_hd"
     android:orientation="vertical">
 
+    <View
+        android:id="@+id/top_view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/commont_dp48"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,27 +39,55 @@
                 android:layout_marginRight="@dimen/commont_dp20"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/commont_dp20" />
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/login_phone"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:digits="1234567890"
+                        android:hint="@string/phone"
+                        android:inputType="phone|number"
+                        android:maxLength="12"
+                        android:padding="@dimen/commont_dp10"
+                        android:singleLine="true"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="@dimen/commont_dp18"
+                        tools:ignore="SpUsage" />
+
+                    <Button
+                        android:id="@+id/login_code_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:padding="@dimen/commont_dp10"
+                        android:text="@string/obtain_code"
+                        android:textColor="@color/graydark"
+                        android:textSize="@dimen/commont_dp14"
+                        tools:ignore="SpUsage" />
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/commont_dp1"
-                    android:layout_marginTop="@dimen/commont_dp5"
+                    android:layout_marginTop="@dimen/commont_dp2"
                     android:background="@android:color/darker_gray" />
 
                 <TextView
+                    android:id="@+id/login_errer_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/commont_dp10"
                     android:text="@string/phone_hint"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/commont_dp16" />
-
+                    android:textSize="@dimen/commont_dp16"
+                    tools:ignore="SpUsage" />
 
             </LinearLayout>
 
@@ -78,31 +114,54 @@
                 android:layout_marginRight="@dimen/commont_dp20"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <EditText
+                    android:id="@+id/login_code"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/phone"
+                    android:background="@android:color/transparent"
+                    android:digits="1234567890"
+                    android:hint="@string/code"
+                    android:inputType="phone|number"
+                    android:maxLength="6"
+                    android:padding="@dimen/commont_dp10"
+                    android:singleLine="true"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/commont_dp20" />
+                    android:textSize="@dimen/commont_dp18"
+                    tools:ignore="SpUsage" />
 
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/commont_dp1"
-                    android:layout_marginTop="@dimen/commont_dp5"
+                    android:layout_marginTop="@dimen/commont_dp2"
                     android:background="@android:color/darker_gray" />
 
                 <TextView
+                    android:id="@+id/login_errer_code"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/commont_dp10"
-                    android:text="@string/phone_hint"
+                    android:text="@string/code_hint"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/commont_dp16" />
+                    android:textSize="@dimen/commont_dp16"
+                    tools:ignore="SpUsage" />
 
 
             </LinearLayout>
 
         </LinearLayout>
+
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/commont_dp20"
+            android:layout_marginRight="@dimen/commont_dp20"
+            android:layout_marginTop="@dimen/commont_dp20"
+            android:background="@color/white"
+            android:text="@string/login"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/commont_dp16" />
 
     </LinearLayout>
 

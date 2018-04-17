@@ -14,6 +14,4 @@ import java.util.Map;
 public interface HttpRequestIn {
 
     void setPublic(Context context, Map<String, Object> map, Handler mHnadler, String url, String name);
-
-    void setWIFI_ADDRESS(Context context, Handler mHandler);
 }
