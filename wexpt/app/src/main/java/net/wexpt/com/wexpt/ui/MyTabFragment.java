@@ -7,7 +7,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 
 import net.wexpt.com.wexpt.R;
 import net.wexpt.com.wexpt.base.BaseFragment;
@@ -39,71 +42,21 @@ import java.util.List;
  * ******┗┻┛  ┗┻┛
  */
 
-public class MyTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener, ViewPager.OnPageChangeListener {
+public class MyTabFragment extends BaseFragment{
 
-    private MZBannerView banner;
-    public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
+    private ImageView my_image;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fra_mainmy, container, false);
-        banner = view.findViewById(R.id.banner);
+        my_image = view.findViewById(R.id.my_image);
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-        List<Integer> bannerList = new ArrayList<>();
-        for (int i = 0; i < BANNER.length; i++) {
-            bannerList.add(BANNER[i]);
-        }
-        banner.addPageChangeLisnter(this);
-        banner.setBannerPageClickListener(this);
-        banner.setIndicatorVisible(true);
-        // 代码中更改indicator 的位置
-        //mMZBanner.setIndicatorAlign(MZBannerView.IndicatorAlign.LEFT);
-        //mMZBanner.setIndicatorPadding(10,0,0,150);
-        banner.setPages(bannerList, new MZHolderCreator<BannerViewHolder>() {
-            @Override
-            public BannerViewHolder createViewHolder() {
-                return new BannerViewHolder();
-            }
-        });
-    }
-
-    @Override
-    public void onPageClick(View view, int position) {
-        Toast.makeText(getContext(), "click page:" + position, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        banner.start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        banner.pause();
+        Glide.with(getActivity()).load(R.mipmap.pic_hd).into(my_image);
     }
 }

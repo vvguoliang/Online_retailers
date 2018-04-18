@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Message
 import com.google.gson.Gson
 import net.wexpt.com.wexpt.ui.Data.HomeData
+import net.wexpt.com.wexpt.ui.Data.LoginData
 import okhttp3.Request
 import org.json.JSONObject
 import java.io.IOException
@@ -46,7 +47,7 @@ class HttpRequest private constructor() : HttpRequestIn {
                     @Throws(Exception::class)
                     override fun requestSuccess(result: String, name: String) {
                         when (name) {
-                            "LOGIN" -> println("=======$result======$name")
+                            "LOGIN" -> setLOGIN(context, mHnadler, result)
                             "HOME" -> setHOME(context, mHnadler, result)
                         }
 
@@ -58,6 +59,15 @@ class HttpRequest private constructor() : HttpRequestIn {
         val gosn = Gson().fromJson(result, HomeData::class.java)
         val message = Message()
         message.what = 1000
+        message.obj = gosn
+        mHnadler.handleMessage(message)
+    }
+
+
+    override fun setLOGIN(context: Context, mHnadler: Handler, result: String) {
+        val gosn = Gson().fromJson(result, LoginData::class.java)
+        val message = Message()
+        message.what = 1001
         message.obj = gosn
         mHnadler.handleMessage(message)
     }

@@ -79,13 +79,6 @@ public class MainTabFragment extends BaseFragment {
     private RecyclerView recycler_view_test_rv_image;
     private RecyclerView recycler_view_image;
 
-    @Override
-    public void onAttach(@org.jetbrains.annotations.Nullable Context context) {
-        super.onAttach(context);
-        HttpRequest.Companion.get().setPublic(getActivity(), AfferentDataHttpMap.Companion.get().setUSER_NUll(""),
-                mHandler, HttpImplements.Companion.get().getHttp(getActivity(), "HOME"), "HOME");
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -134,6 +127,8 @@ public class MainTabFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        HttpRequest.Companion.get().setPublic(getActivity(), AfferentDataHttpMap.Companion.get().setUSER_NUll(""),
+                mHandler, HttpImplements.Companion.get().getHttp(getActivity(), "HOME"), "HOME");
         banner.start();
     }
 

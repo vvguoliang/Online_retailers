@@ -9,9 +9,10 @@
 
     <ImageView
         android:id="@+id/itme_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/commont_dp40"
+        android:layout_height="@dimen/commont_dp40"
         android:layout_gravity="center"
+        android:scaleType="fitXY"
         android:src="@mipmap/ic_bag_image" />
 
     <TextView
