@@ -119,7 +119,7 @@ class MainActivity : BaseBackExitActivity() {
         super.initImmersionBar()
         mImmersionBar?.statusBarView(top_view)?.init()
         ImmersionBar.with(this@MainActivity)
-                .statusBarDarkFont(true, 0.2f)
+                .statusBarDarkFont(true, 0.1f)
                 .init()
 
     }

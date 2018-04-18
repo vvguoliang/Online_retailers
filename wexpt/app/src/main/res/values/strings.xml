@@ -13,6 +13,13 @@
     <string name="code_hint_text">获取验证码</string>
     <string name="login">登&#160;&#160;&#160;&#160;录</string>
 
+    <string name="place_rigin">产地&#058;</string>
+    <string name="hot_goods">热销商品</string>
+    <string name="special_price">本周特价</string>
+    <string name="recommended">推荐分类</string>
+
+    <string name="coming_soon">敬请期待</string>
+
     <string name="login_no_phton">请输入手机号</string>
     <string name="login_no_correct">您输入的手机号不正确，请重新输入</string>
     <string name="login_no_code">请输入验证码</string>

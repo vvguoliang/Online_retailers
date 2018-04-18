@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import net.wexpt.com.wexpt.R;
 import net.wexpt.com.wexpt.ui.viwepage.holder.MZViewHolder;
 
@@ -29,20 +31,21 @@ import net.wexpt.com.wexpt.ui.viwepage.holder.MZViewHolder;
  * ******┗┻┛  ┗┻┛
  */
 
-public class BannerViewHolder implements MZViewHolder<Integer> {
+public class BannerViewHolder implements MZViewHolder<String> {
 
     private ImageView mImageView;
+
     @Override
     public View createView(Context context) {
         // 返回页面布局文件
-        View view = LayoutInflater.from(context).inflate(R.layout.banner_item,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.banner_item, null);
         mImageView = view.findViewById(R.id.banner_image);
         return view;
     }
 
     @Override
-    public void onBind(Context context, int position, Integer data) {
+    public void onBind(Context context, int position, String data) {
         // 数据绑定
-        mImageView.setImageResource(data);
+        Glide.with(context).load(data).into(mImageView);
     }
 }

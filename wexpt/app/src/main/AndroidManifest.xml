@@ -33,7 +33,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.LandActivity" />
+        <activity
+            android:name=".ui.LandActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.WebVIewActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

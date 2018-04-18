@@ -2,7 +2,6 @@ package net.wexpt.com.wexpt.ui.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,27 +9,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import net.wexpt.com.wexpt.R;
-import net.wexpt.com.wexpt.ui.Data.Person;
+import net.wexpt.com.wexpt.ui.Data.Category;
 import net.wexpt.com.wexpt.ui.recyclerview.recyclerview.BaseRecyclerAdapter;
-import net.wexpt.com.wexpt.ui.utils.DensityUtil;
 
 import java.util.List;
-import java.util.Map;
 
 public class SimpleAdapter1 extends BaseRecyclerAdapter<SimpleAdapter1.SimpleAdapterViewHolder> {
-    private List<Map<String, Object>> list;
+    private List<Category> list;
     private SimpleAdapter1.OnRecyclerView1ItemClickListener mOnItemClickListener = null;
+    private Context context;
 
-    public SimpleAdapter1(List<Map<String, Object>> list, Context context) {
-        this.list = list;
+    public SimpleAdapter1(Context context) {
+        this.context = context;
     }
 
     @Override
     public void onBindViewHolder(SimpleAdapterViewHolder holder, int position, boolean isItem) {
-
-        holder.itme_text.setText(list.get(position).get("name").toString());
-        holder.itme_image.setImageResource(Integer.parseInt(list.get(position).get("image").toString()));
+        holder.itme_text.setText(list.get(position).getName());
+        Glide.with(context).load(list.get(position).getImage()).into(holder.itme_image);
     }
 
     @Override
@@ -40,7 +39,10 @@ public class SimpleAdapter1 extends BaseRecyclerAdapter<SimpleAdapter1.SimpleAda
 
     @Override
     public int getAdapterItemCount() {
-        return list.size();
+        if (list != null && list.size() > 0)
+            return list.size();
+        else
+            return 0;
     }
 
     @Override
@@ -48,7 +50,7 @@ public class SimpleAdapter1 extends BaseRecyclerAdapter<SimpleAdapter1.SimpleAda
         return new SimpleAdapterViewHolder(view, false);
     }
 
-    public void setData(List<Map<String, Object>> list) {
+    public void setData(List<Category> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -60,7 +62,7 @@ public class SimpleAdapter1 extends BaseRecyclerAdapter<SimpleAdapter1.SimpleAda
         return new SimpleAdapterViewHolder(v, true);
     }
 
-    public void insert(Map<String, Object> person, int position) {
+    public void insert(Category person, int position) {
         insert(list, person, position);
     }
 
@@ -99,7 +101,7 @@ public class SimpleAdapter1 extends BaseRecyclerAdapter<SimpleAdapter1.SimpleAda
         }
     }
 
-    public Map<String, Object> getItem(int position) {
+    public Category getItem(int position) {
         if (position < list.size())
             return list.get(position);
         else

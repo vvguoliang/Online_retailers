@@ -1,6 +1,7 @@
 package net.wexpt.com.wexpt.ui;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,11 @@ import android.widget.Toast;
 
 import net.wexpt.com.wexpt.R;
 import net.wexpt.com.wexpt.base.BaseFragment;
-import net.wexpt.com.wexpt.ui.Data.Person;
+import net.wexpt.com.wexpt.ui.Data.Banner;
+import net.wexpt.com.wexpt.ui.Data.Category;
+import net.wexpt.com.wexpt.ui.Data.HomeData;
+import net.wexpt.com.wexpt.ui.Data.Product;
+import net.wexpt.com.wexpt.ui.Data.SpecialProduct;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter1;
 import net.wexpt.com.wexpt.ui.adapter.SimpleAdapter2;
@@ -30,11 +36,8 @@ import net.wexpt.com.wexpt.ui.recyclerview.XRefreshViewFooter;
 import net.wexpt.com.wexpt.ui.viwepage.BannerViewHolder;
 import net.wexpt.com.wexpt.ui.viwepage.MZBannerView;
 
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -61,7 +64,7 @@ import java.util.Random;
  */
 @SuppressWarnings("ALL")
 @SuppressLint("HandlerLeak")
-public class MainTabFragment extends BaseFragment implements MZBannerView.BannerPageClickListener {
+public class MainTabFragment extends BaseFragment {
 
     private XRefreshView custom_view;
     private RecyclerView recycler_view_test_rv;
@@ -70,15 +73,18 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
     private SimpleAdapter1 adapter1;
     private SimpleAdapter2 adapter2;
 
-    private List<Person> personList = new ArrayList<>();
-
     private int mLoadCount = 0;
 
     private MZBannerView banner;
-    public static final int[] BANNER = new int[]{R.mipmap.banner1, R.mipmap.banner2, R.mipmap.banner3, R.mipmap.banner4, R.mipmap.banner5};
-
     private RecyclerView recycler_view_test_rv_image;
     private RecyclerView recycler_view_image;
+
+    @Override
+    public void onAttach(@org.jetbrains.annotations.Nullable Context context) {
+        super.onAttach(context);
+        HttpRequest.Companion.get().setPublic(getActivity(), AfferentDataHttpMap.Companion.get().setUSER_NUll(""),
+                mHandler, HttpImplements.Companion.get().getHttp(getActivity(), "HOME"), "HOME");
+    }
 
     @Nullable
     @Override
@@ -95,10 +101,9 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         custom_view.setPullLoadEnable(true);
         recycler_view_test_rv.setHasFixedSize(true);
 
-        initData();
-
-        adapter = new SimpleAdapter(personList, getActivity());
+        adapter = new SimpleAdapter(getActivity());
         recycler_view_test_rv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+
 
         View headerView = adapter.setHeaderView(R.layout.home_banner_content, recycler_view_test_rv);
         TextView text_title = headerView.findViewById(R.id.text_title);
@@ -107,25 +112,72 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         recycler_view_image = headerView.findViewById(R.id.recycler_view_image);
         recycler_view_test_rv_image = headerView.findViewById(R.id.recycler_view_test_rv_image);
 
-        getBranner();
-
-        recycler_view_test_rv.setAdapter(adapter);
-
-        getRecycler_view_test_rv();
+        adapter1 = new SimpleAdapter1(getActivity());
+        recycler_view_image.setAdapter(adapter1);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycler_view_image.setLayoutManager(linearLayoutManager);
-        adapter1 = new SimpleAdapter1(getlist(), getActivity());
 
-        recycler_view_image.setAdapter(adapter1);
-
+        adapter2 = new SimpleAdapter2(getActivity());
+        recycler_view_test_rv_image.setAdapter(adapter2);
 
         LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
         linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         recycler_view_test_rv_image.setLayoutManager(linearLayoutManager1);
 
-        adapter.setOnItemClickListener((view12, data) -> Toast.makeText(getActivity(), "===1===" + data, Toast.LENGTH_LONG).show());
+        getRecycler_view_test_rv();
+
+        recycler_view_test_rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        banner.start();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        banner.pause();
+    }
+
+    /**
+     * 轮播图
+     *
+     * @param bannerList
+     */
+    private void getBranner(List<Banner> bannerList) {
+        List<String> bannerList1 = new ArrayList<>();
+        for (int i = 0; i < bannerList.size(); i++) {
+            bannerList1.add(bannerList.get(i).getImage().toString());
+        }
+        banner.setBannerPageClickListener(new MZBannerView.BannerPageClickListener() {
+            @Override
+            public void onPageClick(View view, int position) {
+                if (TextUtils.isEmpty(bannerList.get(position).getUrl())) {
+                    Toast.makeText(getActivity(), getString(R.string.coming_soon), Toast.LENGTH_LONG).show();
+                } else {
+                    Intent intent = new Intent(getActivity(), WebVIewActivity.class);
+                    intent.putExtra("url", bannerList.get(position).getUrl());
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
+        banner.setIndicatorVisible(true);
+        // 代码中更改indicator 的位置
+        //mMZBanner.setIndicatorAlign(MZBannerView.IndicatorAlign.LEFT);
+        //mMZBanner.setIndicatorPadding(10,0,0,150);
+        banner.setPages(bannerList1, () -> new BannerViewHolder());
+    }
+
+    /**
+     * 推荐分类
+     *
+     * @param category
+     */
+    private void getCategory(List<Category> category) {
         adapter1.setOnItemClickListener((view1, data) -> {
             switch (data) {
                 case 0:
@@ -135,76 +187,19 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
                     break;
             }
         });
-
+        adapter1.setData(category);
     }
 
-    private List<Map<String, Object>> getlist() {
-        List<Map<String, Object>> list = new ArrayList<>();
-        Map<String, Object> map = new HashMap<>();
-        map.put("name", "包包");
-        map.put("image", R.mipmap.ic_bag_image);
-        list.add(map);
-        map = new HashMap<>();
-        map.put("name", "美妆");
-        map.put("image", R.mipmap.ic_beauty_image);
-        list.add(map);
-        map = new HashMap<>();
-        map.put("name", "服装");
-        map.put("image", R.mipmap.ic_clothing_image);
-        list.add(map);
-        map = new HashMap<>();
-        map.put("name", "配饰");
-        map.put("image", R.mipmap.ic_accessories_image);
-        list.add(map);
-        map = new HashMap<>();
-        map.put("name", "其他");
-        map.put("image", R.mipmap.ic_other_image);
-        list.add(map);
-        map = new HashMap<>();
-        map.put("name", "自定义");
-        map.put("image", R.mipmap.ic_custom_image);
-        list.add(map);
+    private void getProduct(List<Product> product) {
+        adapter2.setOnItemClickListener((view, data) -> {
 
-        return list;
+        });
+        adapter2.setData(product);
     }
 
-    private void initData() {
-        for (int i = 0; i < 10; i++) {
-            Person person = new Person("name" + i, "" + i);
-            personList.add(person);
-        }
-    }
-
-    @Override
-    public void onPageClick(View view, int position) {
-        Toast.makeText(getContext(), "click page:" + position, Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        HttpRequest.Companion.get().setPublic(getActivity(), AfferentDataHttpMap.Companion.get().setUSER_NUll(""),
-                mHandler, HttpImplements.Companion.get().getHttp(getActivity(), "HOME"), "HOME");
-        banner.start();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        banner.pause();
-    }
-
-    private void getBranner() {
-        List<Integer> bannerList = new ArrayList<>();
-        for (int i = 0; i < BANNER.length; i++) {
-            bannerList.add(BANNER[i]);
-        }
-        banner.setBannerPageClickListener(this);
-        banner.setIndicatorVisible(true);
-        // 代码中更改indicator 的位置
-        //mMZBanner.setIndicatorAlign(MZBannerView.IndicatorAlign.LEFT);
-        //mMZBanner.setIndicatorPadding(10,0,0,150);
-        banner.setPages(bannerList, () -> new BannerViewHolder());
+    private void getSpecialProduct(List<SpecialProduct> specialProduct) {
+        adapter.setOnItemClickListener((view12, data) -> Toast.makeText(getActivity(), "===1===" + data, Toast.LENGTH_LONG).show());
+        adapter.setData(specialProduct);
     }
 
     private void getRecycler_view_test_rv() {
@@ -241,12 +236,12 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
                     public void run() {
                         if (custom_view.hasLoadCompleted()) {
                         }
-                        for (int i = 0; i < 6; i++) {
-                            adapter.insert(new Person("More ", "21"),
-                                    adapter.getAdapterItemCount());
-                        }
+//                        for (int i = 0; i < 6; i++) {
+//                            adapter.insert(new SpecialProduct("More ", "21"),
+//                                    adapter.getAdapterItemCount());
+//                        }
                         mLoadCount++;
-                        if (mLoadCount >= 3) {
+                        if (mLoadCount >= 2) {
                             custom_view.setLoadComplete(true);
                         } else {
                             // 刷新完成必须调用此方法停止加载
@@ -263,6 +258,22 @@ public class MainTabFragment extends BaseFragment implements MZBannerView.Banner
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            switch (msg.what) {
+                case 1000:
+                    HomeData homeData = (HomeData) msg.obj;
+                    List<Banner> banner = homeData.getData().getBanner();//轮播图
+                    List<Category> category = homeData.getData().getCategory();//中间选项
+                    List<Product> product = homeData.getData().getProduct();//商品选项
+                    List<SpecialProduct> specialProduct = homeData.getData().getSpecialProduct();//所有商品
+                    getBranner(banner);
+                    getCategory(category);
+                    getProduct(product);
+                    getSpecialProduct(specialProduct);
+                    break;
+                case 205:
+                    Toast.makeText(getActivity(), "链接超时", Toast.LENGTH_LONG).show();
+                    break;
+            }
         }
     };
 

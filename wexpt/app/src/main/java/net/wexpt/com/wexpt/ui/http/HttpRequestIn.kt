@@ -1,9 +1,12 @@
 package net.wexpt.com.wexpt.ui.http
 
+import android.content.Context
+import android.os.Handler
+
 /**
- * @Time : 2018/4/16 no 下午2:17
+ * @Time : 2018/4/17 no 下午4:21
  * @USER : vvguoliang
- * @File : AfferentMap.kt
+ * @File : HttpRequestIn.kt
  * @Software: Android Studio
  *code is far away from bugs with the god animal protecting
  *   I love animals. They taste delicious.
@@ -20,15 +23,9 @@ package net.wexpt.com.wexpt.ui.http
  * ******┃┫┫  ┃┫┫
  * ******┗┻┛  ┗┻┛
  */
-interface AfferentMap {
+interface HttpRequestIn {
 
-    abstract fun setUSER_NUll(inStr: String): Map<String, Any>
+    abstract fun setPublic(context: Context, map: Map<String, Any>, mHnadler: Handler, url: String, name: String)
 
-    abstract fun setUSER_LONG(inStr: String, telephone: String, code: String): Map<String, Any>
-
-    abstract fun setSUANFA(itSF: String, timeMillis: String): String
-
-    abstract fun setString2MD5(inStr: String, timeMillis: String): String
-
-    abstract fun setTimeMillis(): String
+    abstract fun setHOME(context: Context, mHnadler: Handler, result: String)
 }

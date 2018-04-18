@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/card_view"
-    android:layout_width="match_parent"
+    android:id="@+id/item_linear"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/commont_dp5"
-    android:orientation="vertical">
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/commont_dp10">
 
     <ImageView
-        android:id="@+id/SpecialProduct_image"
-        android:layout_width="@dimen/commont_dp190"
-        android:layout_height="@dimen/commont_dp200"
+        android:id="@+id/product_image"
+        android:layout_width="@dimen/commont_dp100"
+        android:layout_height="@dimen/commont_dp100"
         android:layout_gravity="center"
-        android:background="@drawable/shape_corner"
-        android:padding="@dimen/commont_dp5"
         android:scaleType="fitXY"
         android:src="@mipmap/pic_hd" />
 
     <TextView
-        android:id="@+id/SpecialProduct_text_name"
+        android:id="@+id/product_text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/commont_dp10"
-        android:layout_marginRight="@dimen/commont_dp10"
-        android:layout_marginTop="@dimen/commont_dp10"
+        android:layout_marginTop="@dimen/commont_dp5"
         android:ellipsize="end"
-        android:maxEms="12"
+        android:maxEms="7"
         android:singleLine="true"
         android:text="@string/place_rigin"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/commont_dp14" />
-
+        android:textSize="@dimen/commont_dp12" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/commont_dp5"
-        android:layout_marginRight="@dimen/commont_dp5"
-        android:padding="@dimen/commont_dp5">
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/commont_dp5">
 
         <TextView
             android:id="@+id/place_textview"
@@ -45,66 +40,65 @@
             android:layout_height="wrap_content"
             android:text="@string/place_rigin"
             android:textColor="@color/gray"
-            android:textSize="@dimen/commont_dp14" />
+            android:textSize="@dimen/commont_dp10" />
 
         <TextView
-            android:id="@+id/SpecialProduct_text_place"
+            android:id="@+id/product_text_place"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/commont_dp10"
             android:layout_toRightOf="@id/place_textview"
             android:text="@string/place_rigin"
             android:textColor="@color/gray"
-            android:textSize="@dimen/commont_dp14" />
+            android:textSize="@dimen/commont_dp10" />
 
         <TextView
-            android:id="@+id/SpecialProduct_text_goods"
+            android:id="@+id/product_text_goods"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/commont_dp10"
             android:text="@string/place_rigin"
             android:textColor="@color/gray"
-            android:textSize="@dimen/commont_dp14" />
+            android:textSize="@dimen/commont_dp10" />
 
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/commont_dp10"
-        android:layout_marginRight="@dimen/commont_dp10">
+        android:layout_marginTop="@dimen/commont_dp5">
 
         <TextView
-            android:id="@+id/SpecialProduct_text_primary"
+            android:id="@+id/product_text_primary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_gravity="center|left"
             android:text="@string/place_rigin"
             android:textColor="@color/gray"
-            android:textSize="@dimen/commont_dp14" />
+            android:textSize="@dimen/commont_dp10" />
 
         <TextView
-            android:id="@+id/SpecialProduct_text_ml"
+            android:id="@+id/product_text_ml"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_gravity="center|left"
+            android:layout_marginRight="@dimen/commont_dp10"
             android:text="@string/place_rigin"
             android:textColor="@color/gray"
-            android:textSize="@dimen/commont_dp14" />
+            android:textSize="@dimen/commont_dp10" />
+
     </RelativeLayout>
 
 
     <TextView
-        android:id="@+id/SpecialProduct_text_goods_money"
+        android:id="@+id/product_text_goods_money"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center|left"
-        android:layout_marginLeft="@dimen/commont_dp10"
         android:text="@string/place_rigin"
         android:textColor="@color/colorAccent"
         android:textSize="@dimen/commont_dp16" />
-
 
 </LinearLayout>

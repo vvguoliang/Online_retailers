@@ -35,9 +35,10 @@ class AfferentDataHttpMap private constructor() : AfferentMap {
      * 登入
      */
     private fun getUSER_LONG(inStr: String, telephone: String, code: String): Map<String, Any> {
+        val timeMillis: String = setTimeMillis()
         val map = HashMap<String, Any>()
-        map["api_token"] = setSUANFA(inStr)
-        map["t"] = setTimeMillis()
+        map["api_token"] = setSUANFA(inStr, timeMillis)
+        map["t"] = timeMillis
         map["telephone"] = telephone
         map["code"] = code
         return map
@@ -48,20 +49,21 @@ class AfferentDataHttpMap private constructor() : AfferentMap {
     }
 
     private fun getUSER_NULL(inStr: String): Map<String, Any> {
+        val timeMillis: String = setTimeMillis()
         val map = HashMap<String, Any>()
-        map["api_token"] = setSUANFA(inStr)
-        map["t"] = setTimeMillis()
+        map["api_token"] = setSUANFA(inStr, timeMillis)
+        map["t"] = timeMillis
         return map
     }
 
     /**
      * 最终算法 user_token + String + 时间戳
      */
-    override fun setSUANFA(itSF: String): String {
+    override fun setSUANFA(itSF: String, timeMillis: String): String {
         if (TextUtils.isEmpty(itSF)) {
-            return setString2MD5(strings + setTimeMillis())
+            return setString2MD5(strings, timeMillis)
         } else {
-            return setString2MD5(itSF + strings + setTimeMillis())
+            return setString2MD5(itSF + strings, timeMillis)
         }
     }
 
@@ -72,13 +74,12 @@ class AfferentDataHttpMap private constructor() : AfferentMap {
         val dt = Date()
         val time = dt.time
         return time.toString()
-//        return System.currentTimeMillis().toString()
     }
 
     private val strings = "fjsadhfkjashfhwruefhijoishfeu"
 
-    override fun setString2MD5(inStr: String): String {
-        return string2MD5(inStr)
+    override fun setString2MD5(inStr: String, timeMillis: String): String {
+        return string2MD5(inStr + timeMillis)
     }
 
     /***

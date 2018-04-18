@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/text_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/commont_dp48"
+        android:layout_centerInParent="true"
         android:background="@color/white"
+        android:ellipsize="end"
         android:gravity="center"
-        android:text="首页"
+        android:maxEms="12"
+        android:singleLine="true"
         android:textColor="@android:color/black"
         android:textSize="@dimen/commont_dp16" />
-</LinearLayout>
+
+    <Button
+        android:id="@+id/title_button_return"
+        android:layout_width="@dimen/commont_dp25"
+        android:layout_height="@dimen/commont_dp20"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/commont_dp10"
+        android:background="@drawable/ic_return"
+        android:padding="@dimen/commont_dp10"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/title_button_fork"
+        android:layout_width="@dimen/commont_dp20"
+        android:layout_height="@dimen/commont_dp20"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/title_button_return"
+        android:background="@drawable/ic_fork"
+        android:padding="@dimen/commont_dp10"
+        android:visibility="gone" />
+
+</RelativeLayout>

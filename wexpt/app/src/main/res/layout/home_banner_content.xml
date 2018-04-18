@@ -12,12 +12,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/commont_dp10"
+        android:layout_margin="@dimen/commont_dp5"
         android:orientation="horizontal">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
@@ -28,35 +28,31 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="推荐分类"
+            android:text="@string/recommended"
             android:textColor="@android:color/black"
             android:textSize="@dimen/commont_dp18" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <include
         android:id="@+id/recycler_view_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="2dp"
-        android:background="@color/white"
-        android:scrollbars="none" />
+        layout="@layout/view_recyclerview_item" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/commont_dp10"
         android:orientation="horizontal">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
@@ -67,35 +63,31 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="本周特价"
+            android:text="@string/special_price"
             android:textColor="@android:color/black"
             android:textSize="@dimen/commont_dp18" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <include
         android:id="@+id/recycler_view_test_rv_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="2dp"
-        android:background="#bbccaa"
-        android:scrollbars="horizontal" />
+        layout="@layout/view_recyclerview_item" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/commont_dp10"
+        android:layout_marginBottom="@dimen/commont_dp5"
         android:orientation="horizontal">
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
@@ -106,13 +98,13 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="热销商品"
+            android:text="@string/hot_goods"
             android:textColor="@android:color/black"
             android:textSize="@dimen/commont_dp18" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/commont_dp1"
+            android:layout_height="@dimen/commont_dp05"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:background="@android:color/black" />
