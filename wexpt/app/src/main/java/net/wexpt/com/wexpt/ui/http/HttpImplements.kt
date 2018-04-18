@@ -1,7 +1,6 @@
 package net.wexpt.com.wexpt.ui.http
 
 import android.content.Context
-import net.wexpt.com.wexpt.ui.utils.SPUtils
 
 /**
  * @Time : 2018/4/16 no 下午1:18

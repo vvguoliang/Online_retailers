@@ -28,4 +28,8 @@ interface HttpRequestIn {
     abstract fun setPublic(context: Context, map: Map<String, Any>, mHnadler: Handler, url: String, name: String)
 
     abstract fun setHOME(context: Context, mHnadler: Handler, result: String)
+
+    abstract fun setLOGIN(context: Context, mHnadler: Handler, result: String)
+
+
 }
