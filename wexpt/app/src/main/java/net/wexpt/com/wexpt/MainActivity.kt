@@ -19,10 +19,13 @@ import net.wexpt.com.wexpt.ui.MainTabFragment
 import net.wexpt.com.wexpt.ui.MiddleTabFragment
 import net.wexpt.com.wexpt.ui.MyTabFragment
 
+/**
+ *  主页
+ */
 @SuppressLint("RestrictedApi")
 class MainActivity : BaseBackExitActivity() {
 
-    var bluesFragments = listOf<BaseFragment>(MainTabFragment(), MainTabClassification(), MiddleTabFragment(), MyTabFragment())
+    var bluesFragments = listOf(MainTabFragment(), MainTabClassification(), MiddleTabFragment(), MyTabFragment())
 
     override fun initParams(arguments: Bundle?) {
     }
