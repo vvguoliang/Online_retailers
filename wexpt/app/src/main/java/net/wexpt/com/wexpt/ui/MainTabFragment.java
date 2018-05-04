@@ -35,6 +35,8 @@ import net.wexpt.com.wexpt.ui.recyclerview.XRefreshView;
 import net.wexpt.com.wexpt.ui.recyclerview.XRefreshViewFooter;
 import net.wexpt.com.wexpt.ui.viwepage.BannerViewHolder;
 import net.wexpt.com.wexpt.ui.viwepage.MZBannerView;
+import net.wexpt.com.wexpt.ui.viwepage.holder.MZHolderCreator;
+import net.wexpt.com.wexpt.ui.viwepage.holder.MZViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -165,6 +167,13 @@ public class MainTabFragment extends BaseFragment {
         //mMZBanner.setIndicatorAlign(MZBannerView.IndicatorAlign.LEFT);
         //mMZBanner.setIndicatorPadding(10,0,0,150);
         banner.setPages(bannerList1, () -> new BannerViewHolder());
+        banner.setPages(bannerList1, new MZHolderCreator() {
+            @Override
+            public MZViewHolder createViewHolder() {
+                return new BannerViewHolder();
+            }
+        });
+
     }
 
     /**
